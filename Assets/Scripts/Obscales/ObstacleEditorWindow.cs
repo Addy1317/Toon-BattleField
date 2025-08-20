@@ -3,6 +3,10 @@ using SlowpokeStudio.Obstacle;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Custom Unity Editor Window for editing obstacles on a 10x10 grid.
+/// Allows you to toggle obstacle tiles and save/load them to/from a ScriptableObject.
+/// </summary>
 public class ObstacleEditorWindow : EditorWindow
 {
     private GridObstacleDataSO obstacleData;
@@ -68,6 +72,7 @@ public class ObstacleEditorWindow : EditorWindow
         }
     }
 
+    // Loads the obstacle positions from the ScriptableObject into the toggle grid.
     private void LoadDataFromSO()
     {
         toggleGrid = new bool[10, 10];

@@ -25,6 +25,7 @@ namespace SlowpokeStudio.Enemy
             SpawnEnemies();
         }
 
+        // Spawns enemies at specified grid positions if the tiles are valid (not obstacles)
         private void SpawnEnemies()
         {
             if (!GridManager.Instance.IsInitialized)
@@ -58,6 +59,7 @@ namespace SlowpokeStudio.Enemy
             Debug.Log($"Spawned {enemies.Count} enemies.");
         }
 
+        // Called when the player finishes their move; notifies all enemies to take their turn
         internal void NotifyEnemiesPlayerMoved()
         {
             occupiedTiles.Clear();

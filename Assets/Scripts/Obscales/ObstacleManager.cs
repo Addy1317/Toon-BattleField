@@ -13,12 +13,14 @@ namespace SlowpokeStudio.Obstacle
         [SerializeField] internal GameObject obstaclePrefab; 
         [SerializeField] internal float obstacleYOffset = 0.5f;
 
+        // Waits until GridManager is initialized before spawning obstacles
         private IEnumerator Start()
         {
             yield return new WaitUntil(() => GridManager.Instance != null && GridManager.Instance.IsInitialized);
             SpawnObstacles();
         }
 
+        // Spawns obstacles at positions defined in obstacleData and marks corresponding grid tiles as blocked.
         private void SpawnObstacles()
         {
             if (!GridManager.Instance.IsInitialized)

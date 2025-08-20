@@ -40,6 +40,7 @@ namespace SlowpokeStudio.Grid
             IsInitialized = true;
         }
 
+        // Generates the 2D grid using the provided prefab and stores references in gridTiles array.
         private void GenerateGrid()
         {
             Debug.Log("GridManager: Grid initialized.");
@@ -85,7 +86,8 @@ namespace SlowpokeStudio.Grid
                 Debug.LogError("gridTiles[0,0] is NULL ❌");
             }
         }
-
+        
+        // Checks if a given grid position is an obstacle or out of bounds.
         internal bool IsObstacleAt(Vector2Int pos)
         {
             if (gridTiles == null)
@@ -102,11 +104,13 @@ namespace SlowpokeStudio.Grid
             return gridTiles[pos.x, pos.y].isBlocked;
         }
 
+        // Converts a grid coordinate to a world position
         internal Vector3 GridToWorld(Vector2Int pos)
         {
             return new Vector3(pos.x * spacing, 0f, pos.y * spacing);
         }
 
+        // Returns the GridTile component at a given grid position.
         internal GridTile GetTileAtPosition(Vector2Int pos)
         {
             if (pos.x < 0 || pos.x >= gridSizeX || pos.y < 0 || pos.y >= gridSizeY)
@@ -115,6 +119,7 @@ namespace SlowpokeStudio.Grid
             return gridTiles[pos.x, pos.y];
         }
 
+        // Checks if an enemy is currently occupying a given grid position.
         internal bool IsEnemyAt(Vector2Int pos)
         {
             return EnemyManagerRef != null && EnemyManagerRef.occupiedTiles.Contains(pos);

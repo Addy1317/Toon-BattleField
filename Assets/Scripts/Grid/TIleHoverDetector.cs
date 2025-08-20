@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace SlowpokeStudio.Grid
 {
+    /// <summary>
+    /// Detects which grid tile is being hovered over by the mouse and updates UI text accordingly.
+    /// </summary>
     public class TIleHoverDetector : MonoBehaviour
     {
         [Header("References")]
@@ -20,6 +23,7 @@ namespace SlowpokeStudio.Grid
             DetectHoveredTile();
         }
 
+        // Performs a raycast from the mouse pointer to detect a tile, then updates the UI with its grid position.
         private void DetectHoveredTile()
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);

@@ -42,6 +42,7 @@ namespace SlowpokeStudio.Player
             }
         }
 
+        // Initiates movement to a target grid position if valid and not an obstacle.
         internal void MoveToTile(Vector2Int targetPos)
         {
             if (GridManager.Instance == null || GridManager.Instance.IsObstacleAt(targetPos))
@@ -54,6 +55,7 @@ namespace SlowpokeStudio.Player
                 StartCoroutine(MoveAndNotify(targetPos));
         }
 
+        // Moves the player to the target position, updates the current position, and notifies the EnemyManager once movement is complete.
         private IEnumerator MoveAndNotify(Vector2Int targetPos)
         {
             yield return mover.MoveAlongPath(targetPos);

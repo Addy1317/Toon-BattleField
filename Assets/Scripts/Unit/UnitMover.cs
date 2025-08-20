@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Coroutine to move the unit from its current grid position to the target position using A* pathfinding.
+/// </summary>
 public class UnitMover : MonoBehaviour
 {
     [Header("Unit Mover Settings")]
@@ -11,6 +14,7 @@ public class UnitMover : MonoBehaviour
 
     public bool IsMoving { get; private set; }
 
+    // Coroutine to move the unit from its current grid position to the target position using A* pathfinding.
     internal IEnumerator MoveAlongPath(Vector2Int targetGridPos)
     {
         Vector2Int currentGridPos = GetCurrentGridPos();
@@ -39,6 +43,7 @@ public class UnitMover : MonoBehaviour
         IsMoving = false;
     }
 
+    // Converts the unit’s current world position to grid coordinates.
     private Vector2Int GetCurrentGridPos()
     {
         Vector3 pos = transform.position;

@@ -2,8 +2,12 @@ using SlowpokeStudio.Grid;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Static A* Pathfinder class that calculates the shortest path between two grid positions.
+/// </summary>
 public static class Pathfinder
 {
+    // Finds a path from the start position to the end position using the A* algorithm.
     public static List<Vector2Int> FindPath(Vector2Int start, Vector2Int end)
     {
         HashSet<Vector2Int> closedSet = new();
@@ -51,6 +55,7 @@ public static class Pathfinder
         return null; 
     }
 
+    // Reconstructs the path by backtracking from the end to the start using the cameFrom map.
     static List<Vector2Int> ReconstructPath(Dictionary<Vector2Int, Vector2Int> cameFrom, Vector2Int current)
     {
         List<Vector2Int> path = new() { current };
@@ -62,8 +67,9 @@ public static class Pathfinder
         return path;
     }
 
+    // Heuristic function: Manhattan distance (no diagonals).
     static int Heuristic(Vector2Int a, Vector2Int b) => Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
 
-    static Vector2Int[] GetNeighbours() =>
-        new Vector2Int[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+    // Returns all possible 4-directional neighbors (up, down, left, right).
+    static Vector2Int[] GetNeighbours() => new Vector2Int[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
 }

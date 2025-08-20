@@ -12,6 +12,7 @@ namespace SlowpokeStudio.Enemy
         private PlayerController player;
         private bool isWaitingForPlayerMove = false;
 
+        // Property to get the enemy's current grid position
         [SerializeField] internal Vector2Int CurrentGridPos => GetGridPos();
 
         private void Awake()
@@ -19,11 +20,13 @@ namespace SlowpokeStudio.Enemy
             mover = GetComponent<UnitMover>();
         }
 
+        // Initializes the enemy with a reference to the player
         internal void Initialize(PlayerController playerRef)
         {
             player = playerRef;
         }
 
+        // Called when it's the enemy's turn to take action
         public void TakeTurn(HashSet<Vector2Int> occupiedTiles)
         {
             if (isWaitingForPlayerMove || mover.IsMoving || player == null)
@@ -56,16 +59,19 @@ namespace SlowpokeStudio.Enemy
             }
         }
 
+        // Called when the player has finished their move, allowing the enemy to act again
         internal void NotifyPlayerMoved()
         {
             isWaitingForPlayerMove = false;
         }
 
+        // Coroutine to move enemy to a target grid position using the mover component
         private IEnumerator MoveToTarget(Vector2Int targetGridPos)
         {
             yield return mover.MoveAlongPath(targetGridPos);
         }
 
+        // Calculates and returns the current grid position of the enemy based on world position
         private Vector2Int GetGridPos()
         {
             Vector3 pos = transform.position;
